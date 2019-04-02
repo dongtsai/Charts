@@ -19,6 +19,8 @@ import CoreGraphics
 /// View that represents a pie chart. Draws cake like slices.
 open class PieChartView: PieRadarChartViewBase
 {
+    private var _drawXLabelsMinimumAngle: CGFloat = 0
+    
     /// rect object that represents the bounds of the piechart, needed for drawing the circle
     private var _circleBox = CGRect()
     
@@ -471,6 +473,19 @@ open class PieChartView: PieRadarChartViewBase
     open override var radius: CGFloat
     {
         return _circleBox.width / 2.0
+    }
+    
+    @objc open var drawSliceTextMinimumAngle: CGFloat
+    {
+        get
+        {
+            return _drawXLabelsMinimumAngle
+        }
+        set
+        {
+            _drawXLabelsMinimumAngle = newValue
+            setNeedsDisplay()
+        }
     }
     
     /// - returns: The circlebox, the boundingbox of the pie-chart slices
